@@ -1,1 +1,0 @@
-# test_amazon_recomendations

@@ -1,0 +1,50 @@
+[tool.poetry]
+name = "test_amazon_recomendations"
+version = "0.1.0"
+description = ""
+authors = ["Ider Delzo <soloidx@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.68.0"
+uvicorn = {extras = ["standard"], version = "^0.14.0"}
+SQLAlchemy = "^1.4.22"
+typer = "^0.3.2"
+alembic = "^1.6.5"
+requests = "^2.26.0"
+
+[tool.poetry.dev-dependencies]
+black = "^21.7b0"
+flake8 = "^3.9.2"
+pylint = "^2.9.6"
+pytest = "^6.2.4"
+mypy = "^0.910"
+sqlalchemy-stubs = "^0.4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 80
+
+[tool.pylint.master]
+extension-pkg-whitelist="pydantic"
+
+[tool.pylint.format]
+max-line-length = "88"
+
+[tool.pylint.message_control]
+disable = """
+invalid-name,
+bad-continuation,
+missing-function-docstring,
+missing-module-docstring,
+missing-class-docstring,
+too-few-public-methods,
+too-many-arguments
+"""
+
+[tool.pylint.TYPECHECK]
+ignored-classes = "Session"
+# ignored-modules= "flask_sqlalchemy"

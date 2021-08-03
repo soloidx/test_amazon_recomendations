@@ -1,2 +1,35 @@
 #+title:     Amazon recommendations test
 #+author:    Ider Delzo
+
+* Feature request:
+- A customer needs us to integrate with Amazon, and they need a page in our app to view individual reviews and metadata.
+- They want us to fetch the latest reviews from only the first 5 pages of these URLs:
+  + https://www.amazon.com/Nespresso-Espresso-Machine-DeLonghi-INCLUDED/dp/B07YXMB9F9
+  + https://www.amazon.com/Nespresso-DeLonghi-ENV150BAE-Espresso-Aeroccino/dp/B07YBVTM6F
+  + https://www.amazon.com/Nespresso-CitiZ-Espresso-Machine-DeLonghi/dp/B01M68FHZ4
+  + https://www.amazon.com/Nespresso-Lattissima-Original-Espresso-DeLonghi/dp/B005IOME0W
+- The customer said these fields are important to them to see on the page, per review:
+  + Review title
+  + Review body
+  + Date
+  + Rating
+  + Verified purchase
+  + Any attributes (e.g. "Capacity")
+- They also want to know the top 10 most frequent keywords across all the fetched reviews.
+
+* Installation and usage:
+
+* Architecture overview:
+I imagine the architecture of this project with 2 microservices working together:
+- One capturing the basic information of the product.
+- Another capturing the reviews (page by page and getting the top 10 keywords)
+
+With this approach we can get faster results and keep updating the reviews and keywords
+as we are getting more results.
+
+About the scoring, initially I thought about keeping the keywords inside the databases and getting the count of repetitions
+using a many to many relationship with the product but this approach could not handle
+
+* Pending tasks:
+
+* Deliverables:

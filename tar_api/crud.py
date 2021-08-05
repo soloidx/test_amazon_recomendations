@@ -18,7 +18,7 @@ def create_product(db: Session, product: products_schema.ProductBase):
 
 
 def check_review_by_id(db: Session, review_id: str):
-    review = db.query(models.Product).filter_by(asin=asin).count()
+    review = db.query(models.Review).filter_by(review_id=review_id).count()
     return review > 0
 
 

@@ -32,6 +32,7 @@ class Review(Base):
     __tablename__ = "reviews"
 
     id = Column(Integer, primary_key=True, index=True)
+    review_id = Column(String, unique=True, index=True)
     title = Column(String)
     body = Column(Text)
     body_html = Column(Text)
@@ -40,5 +41,6 @@ class Review(Base):
     datetime = Column(DateTime)
     verified_purchase = Column(Boolean)
     attributes = Column(JSON)
+    keywords = Column(String, default="")
 
     product = relationship("Product", back_populates="reviews")  # type: ignore

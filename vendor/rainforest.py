@@ -102,6 +102,4 @@ def get_reviews_by_asin(asin: str, page: int = 1) -> List[Dict]:
         for x in raw_reviews
     ]
 
-    print(reviews)
-
     return reviews

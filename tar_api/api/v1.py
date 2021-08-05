@@ -26,7 +26,9 @@ def add_product(request: AddRequest, db: Session = Depends(get_db)):
         return pre_product
 
     product_raw = rainforest.get_product_by_url(request.url)
-    product = products_schema.ProductBase(**product_raw)
+    product_base = products_schema.ProductBase(**product_raw)
 
+    product = crud.create_product(db, product_base)
+    # TODO: make this in a queue
     tasks.process_reviews(product.asin)
-    return crud.create_product(db, product)
+    return product

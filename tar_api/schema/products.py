@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import List, Optional, Dict
+from typing import List, Dict
 
 from pydantic import BaseModel
 
@@ -13,6 +13,11 @@ class ReviewBase(BaseModel):
     datetime: datetime
     verified_purchase: bool
     attributes: List[Dict]
+
+
+class ReviewCreate(ReviewBase):
+    review_id: str
+    keywords: str
 
 
 class Review(ReviewBase):
@@ -32,7 +37,7 @@ class ProductBase(BaseModel):
 
 class Product(ProductBase):
     id: int
-    reviews: List[Review]
+    # reviews: List[Review]
 
     class Config:
         orm_mode = True

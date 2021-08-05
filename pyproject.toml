@@ -30,6 +30,7 @@ line-length = 80
 
 [tool.pylint.master]
 extension-pkg-whitelist="pydantic"
+ignore-patterns="flycheck*"
 
 [tool.pylint.format]
 max-line-length = "88"

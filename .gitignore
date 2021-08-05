@@ -374,4 +374,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# internal sqlite db
+*app.db
+
 # End of https://www.toptal.com/developers/gitignore/api/emacs,vim,visualstudiocode,pycharm+all,macos,windows,python

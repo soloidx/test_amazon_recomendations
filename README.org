@@ -26,6 +26,7 @@ RAINFOREST_API_KEY="<api key>"
 SQLALCHEMY_DATABASE_URI="postgresql://<user>:<pass>@db:5432/<database_name>"
 REDIS_URL=redis://redis:6379
   #+end_src
+- Run a ==docker-compose run web alembic upgrade head== in order to generate the database from the migration files
 - Run the ==docker-compose up== and this will run the 4 services (database, redis server, web application and background worker)
 
 ** Using a local machine:
@@ -37,6 +38,7 @@ SQLALCHEMY_DATABASE_URI="postgresql://<user>:<pass>@<postgres_server>:5432/<data
 REDIS_URL=redis://<redis_server>:6379
   #+end_src
 - Install poetry inside the machine
+- In a poetry environment, generate the database from the migrations ==alembic upgrade head==
 - Run a poetry shell for the web instance and run ==python manage.py runserver==
 - Run a poetry shell for the worker instance and run ==python manage.py worker==
 
@@ -58,3 +60,6 @@ product and retrieves the result with the product, this process will be in charg
 that works in the background
 
 * Deliverables:
+
+- mockup: https://www.figma.com/file/ALAnbJUkc8RMeJ0T2wSwB1/test-amazon-products?node-id=0%3A1
+- (Temporary) live site: http://143.198.98.42:8000/docs

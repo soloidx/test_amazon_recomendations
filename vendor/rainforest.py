@@ -1,6 +1,6 @@
 import re
 from datetime import datetime
-from typing import Dict, List
+from typing import Any, Dict, List
 
 import requests  # type: ignore
 
@@ -62,7 +62,7 @@ def get_product_by_url(url: str) -> Dict:
     }
 
 
-def get_reviews_by_asin(asin: str, page: int = 1) -> List[Dict]:
+def get_reviews_by_asin(asin: str, page: int = 1) -> Dict[str, Any]:
     """
     Given an Amazon URL get the product information
     """
@@ -102,4 +102,6 @@ def get_reviews_by_asin(asin: str, page: int = 1) -> List[Dict]:
         for x in raw_reviews
     ]
 
-    return reviews
+    total_pages = data["pagination"]["total_pages"]
+
+    return {"reviews": reviews, "total_pages": total_pages}

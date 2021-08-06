@@ -18,6 +18,30 @@
 - They also want to know the top 10 most frequent keywords across all the fetched reviews.
 
 * Installation and usage:
+** Using docker:
+- create the environment file ==.env-docker== in the project root with this structure:
+  #+begin_src text
+RAINFOREST_API_URL="https://api.rainforestapi.com"
+RAINFOREST_API_KEY="<api key>"
+SQLALCHEMY_DATABASE_URI="postgresql://<user>:<pass>@db:5432/<database_name>"
+REDIS_URL=redis://redis:6379
+  #+end_src
+- Run the ==docker-compose up== and this will run the 4 services (database, redis server, web application and background worker)
+
+** Using a local machine:
+- create the environment file ==.env== in the project root with this structure:
+  #+begin_src text
+RAINFOREST_API_URL="https://api.rainforestapi.com"
+RAINFOREST_API_KEY="<api key>"
+SQLALCHEMY_DATABASE_URI="postgresql://<user>:<pass>@<postgres_server>:5432/<database_name>"
+REDIS_URL=redis://<redis_server>:6379
+  #+end_src
+- Install poetry inside the machine
+- Run a poetry shell for the web instance and run ==python manage.py runserver==
+- Run a poetry shell for the worker instance and run ==python manage.py worker==
+
+** Notes:
+- You can avoid to use a .env file if you can set all the variables in the environment
 
 * Architecture overview:
 I imagine the architecture of this project with 2 microservices working together:
@@ -28,8 +52,9 @@ With this approach we can get faster results and keep updating the reviews and k
 as we are getting more results.
 
 About the scoring, initially I thought about keeping the keywords inside the databases and getting the count of repetitions
-using a many to many relationship with the product but this approach could not handle
-
-* Pending tasks:
+using a many to many relationship with the product but this approach could not handle in large reviews or
+with many API calls so I created a redis service in the middle that stores the count of each keyword per
+product and retrieves the result with the product, this process will be in charge of the worker service
+that works in the background
 
 * Deliverables:

@@ -1,0 +1,32 @@
+version: "3.9" # optional since v1.27.0
+services:
+  x-base: &default
+    build: .
+    env_file: .env-docker
+    volumes:
+      - .:/app
+      - /app/.venv
+    links:
+      - redis
+      - db
+  web:
+    <<: *default
+    ports:
+      - "8000:8000"
+    command: "python ./manage.py runserver"
+  worker:
+    <<: *default
+    command: "rq worker -c settings_worker"
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: test12345
+      POSTGRES_USER: tar_user
+      POSTGRES_DB: tar_db

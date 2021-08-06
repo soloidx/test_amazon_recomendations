@@ -18,5 +18,10 @@ def runserver(reload: bool = True):
     )
 
 
+@manager.command()
+def runworker(reload: bool = True):
+    pass
+
+
 if __name__ == "__main__":
     manager()

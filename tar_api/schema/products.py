@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import List, Dict
+from typing import List, Dict, Optional
 
 from pydantic import BaseModel
 
@@ -37,6 +37,7 @@ class ProductBase(BaseModel):
 
 class Product(ProductBase):
     id: int
+    top_keywords: Optional[List] = []
     # reviews: List[Review]
 
     class Config:

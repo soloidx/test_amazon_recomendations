@@ -1,4 +1,7 @@
+from typing import Any, TypeVar, Generic
+
 from pydantic import BaseModel, HttpUrl
+from pydantic.generics import GenericModel
 
 
 class AddRequest(BaseModel):
@@ -14,3 +17,12 @@ class AddRequest(BaseModel):
                 )
             }
         }
+
+
+DataT = TypeVar("DataT")
+
+
+class PaginatedResponse(GenericModel, Generic[DataT]):
+    data: DataT
+    current_page: int
+    total_pages: int
